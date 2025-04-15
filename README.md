@@ -124,8 +124,11 @@ This project is a CC1101 device inspired by the works of the Evil Crow RF tool, 
 ## Credits
 
 - Original CC1101 implementation by Adam Loboda (adam.loboda@wp.pl)
+  - https://github.com/mcore1976/cc1101-tool
 - Display, button interface, and dual radio implementation by Cypher of Little Hakr
+  - https://linktr.ee/littlehakr
 - Based on the Evil Crow RF project
+  - https://github.com/joelsernamoreno/EvilCrow-RF
 
 ## License
 
