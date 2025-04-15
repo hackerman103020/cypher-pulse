@@ -1,6 +1,6 @@
 # 2x CC1101 Jammer Display ESP32
 
-![Project Banner](img/banner.png)
+![Project Banner](img/banner.jpg)
 *Project banner showing the device in action*
 
 ## Overview
