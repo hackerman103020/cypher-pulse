@@ -5,9 +5,9 @@
 
 ## Overview
 
-This project is an enhanced version of the Evil Crow RF tool, featuring a dual CC1101 radio system with an ESP32 microcontroller. The original work by Adam Loboda has been expanded with a modern OLED display interface, button controls, and dual radio capabilities by Cypher of Little Hakr.
+This project is a CC1101 device inspired by the works of the Evil Crow RF tool, featuring a dual CC1101 radio system with an ESP32 microcontroller. The original work by Adam Loboda has been expanded with a modern OLED display interface, button controls, and dual (future version will have 5 cc1011's for the ultimate researchers) radio capabilities by Cypher of Little Hakr.
 
-![Hardware Setup](img/setup.png)
+![Hardware Setup]
 *Hardware setup showing the ESP32, CC1101 modules, and OLED display*
 
 ## Features
@@ -56,8 +56,7 @@ This project is an enhanced version of the Evil Crow RF tool, featuring a dual C
 
 ## Pin Configuration
 
-![Pinout Diagram](img/pinout.png)
-*Pin configuration diagram*
+*Pin configuration, Adjust to your needs!*
 
 ### CC1101 #1
 - SCK: GPIO14
@@ -78,14 +77,17 @@ This project is an enhanced version of the Evil Crow RF tool, featuring a dual C
 ### Display & Controls
 - OLED I2C: SDA=GPIO21, SCL=GPIO22
 - Buttons: UP=GPIO34, DOWN=GPIO39, SELECT=GPIO32
-- LED: GPIO27
+- LED: Optional, not yet implemented, but choose extra pin
 
 ## Installation
 
 1. Clone this repository
 2. Install required libraries:
    - ELECHOUSE_CC1101_SRC_DRV
-   - ELECHOUSE_CC1101_SRC_DRV2
+     - https://github.com/LSatan/SmartRC-CC1101-Driver-Lib
+   - ELECHOUSE_CC1101_SRC_DRV2 (MUST BE ADDED TO YOUR Adruino/libraries folder!)
+     - This is a heavily custom version of the CC1101 library. It technically is not needed, 
+     - but this allows you to duplicate more libraries and have 2-5+ cc1101's if required! You're welcome :)
    - Adafruit_GFX
    - Adafruit_SSD1306
    - U8g2_for_Adafruit_GFX
