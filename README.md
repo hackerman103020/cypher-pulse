@@ -1,14 +1,11 @@
 # 2x CC1101 Jammer Display ESP32
 
 ![Project Banner](img/banner.jpg)
-*Project banner showing the device in action*
 
 ## Overview
 
 This project is a CC1101 device inspired by the works of the Evil Crow RF tool, featuring a dual CC1101 radio system with an ESP32 microcontroller. The original work by Adam Loboda has been expanded with a modern OLED display interface, button controls, and dual (future version will have 5 cc1011's for the ultimate researchers) radio capabilities by Cypher of Little Hakr.
 
-![Hardware Setup]
-*Hardware setup showing the ESP32, CC1101 modules, and OLED display*
 
 ## Features
 
@@ -43,9 +40,6 @@ This project is a CC1101 device inspired by the works of the Evil Crow RF tool, 
 
 ## Hardware Requirements
 
-![Components](img/components.png)
-*Required components for the project*
-
 - ESP32 development board
 - Two CC1101 radio modules
 - SSD1306 OLED display (128x64)
@@ -55,8 +49,7 @@ This project is a CC1101 device inspired by the works of the Evil Crow RF tool, 
 - Breadboard or custom PCB
 
 ## Pin Configuration
-
-*Pin configuration, Adjust to your needs!*
+*Adjust to your needs!*
 
 ### CC1101 #1
 - SCK: GPIO14
@@ -109,8 +102,8 @@ This project is a CC1101 device inspired by the works of the Evil Crow RF tool, 
 - **2X CC JAM**: Activate both radios for jamming
 - **CC#1 JAM**: Activate first radio only
 - **CC#2 JAM**: Activate second radio only
-- **SCAN**: Scan for RF signals
-- **TEST_CC1101**: Test radio connections
+- **SCAN**: Scan for RF signals (Edit code to change range, soon there will be a few ranges)
+- **TEST_CC1101**: Test CC1101 radio connections
 - **REC RAW**: Record raw RF data
 - **PLAY RAW**: Playback recorded data
 - **SHOW RAW**: Display recorded data
@@ -132,7 +125,7 @@ This project is a CC1101 device inspired by the works of the Evil Crow RF tool, 
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the Apache License. Little Hakr is for the people! Make this better if you're smart & creative enough! Good luck.
 
 ## Disclaimer
 
