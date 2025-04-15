@@ -8,6 +8,7 @@ This project is a CC1101 device inspired by the works of the Evil Crow RF tool, 
 ## WORK IN PROGRESS EXPECT SOME BUGS :)
 ![Hardware Setup]
 *Hardware setup showing the ESP32, CC1101 modules, and OLED display*
+
 <img src="img/device1.JPG" alt="Device Setup" width="50%" height="50%" />
 <img src="img/device2.JPG" alt="Device Setup" width="50%" height="50%" />
 <img src="img/device3.JPG" alt="Device Setup" width="50%" height="50%" />
