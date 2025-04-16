@@ -5,16 +5,16 @@
 ## Overview
 
 This project is a CC1101 device inspired by the works of the Evil Crow RF tool, featuring a dual CC1101 radio system with an ESP32 microcontroller. The original work by Adam Loboda has been expanded with a modern OLED display interface, button controls, and dual (future version will have 5 cc1011's for the ultimate researchers) radio capabilities by Cypher of Little Hakr.
-
+## WORK IN PROGRESS EXPECT SOME BUGS :)
 ![Hardware Setup]
 *Hardware setup showing the ESP32, CC1101 modules, and OLED display*
-![Device Setup](img/device1.JPG)
-![Device Setup](img/device2.JPG)
-![Device Setup](img/device3.JPG)
-![Device Setup](img/device4.JPG)
-![Device Setup](img/device5.JPG)
-![Device Setup](img/device6.JPG)
 
+<img src="img/device1.JPG" alt="Device Setup" width="50%" height="50%" />
+<img src="img/device2.JPG" alt="Device Setup" width="50%" height="50%" />
+<img src="img/device3.JPG" alt="Device Setup" width="50%" height="50%" />
+<img src="img/device4.JPG" alt="Device Setup" width="50%" height="50%" />
+<img src="img/device5.JPG" alt="Device Setup" width="50%" height="50%" />
+<img src="img/device6.JPG" alt="Device Setup" width="50%" height="50%" />
 
 ## Features
 
