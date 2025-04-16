@@ -1507,10 +1507,10 @@ void demonSHIT() {
   u8g2_for_adafruit_gfx.setCursor(20, 40);                 // Centered vertically
   display.drawBitmap(56, 40, image_EviSmile1_bits, 18, 21, 1);
   display.setTextWrap(false);
-  u8g2_for_adafruit_gfx.setCursor(30, 18);
-  u8g2_for_adafruit_gfx.print("C C 1 1 0 1");
-  u8g2_for_adafruit_gfx.setCursor(40, 35);
-  u8g2_for_adafruit_gfx.print("J A M R");
+  u8g2_for_adafruit_gfx.setCursor(26, 18);
+  u8g2_for_adafruit_gfx.print("C Y P H E R");
+  u8g2_for_adafruit_gfx.setCursor(36, 35);
+  u8g2_for_adafruit_gfx.print("P U L S E");
   display.drawBitmap(106, 19, image_Ble_connected_bits, 15, 15, 1);
   display.drawBitmap(2, 50, image_MHz_bits, 25, 11, 1);
   display.drawBitmap(1, 1, image_Error_bits, 18, 18, 1);
@@ -1518,7 +1518,7 @@ void demonSHIT() {
   display.drawBitmap(83, 55, image_off_text_bits, 12, 5, 1);
   display.drawBitmap(109, 2, image_wifi_not_connected_bits, 19, 16, 1);
   display.drawBitmap(4, 31, image_volume_muted_bits, 18, 16, 1);
-  display.drawBitmap(109, 45, image_network_not_connected_bits, 15, 16, 1);
+  display.drawBitmap(109, 42, image_network_not_connected_bits, 15, 16, 1);
   display.drawBitmap(92, 33, image_microphone_muted_bits, 15, 16, 1);
   display.drawBitmap(1, 23, image_mute_text_bits, 19, 5, 1);
   display.drawBitmap(32, 49, image_cross_contour_bits, 11, 16, 1);
