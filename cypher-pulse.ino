@@ -1939,6 +1939,15 @@ void loop() {
         return;
       }
       break;
+    case STATE_CC_SCAN:
+      if (isButtonPressed(SELECT_BUTTON_PIN)) {
+        Serial.println(F("Exiting Show Buffer Mode"));
+        currentState = STATE_MENU;
+        drawMenu();
+        nonBlockingDelay(500);  // Debounce
+        return;
+      }
+      break;
 
     case STATE_RESET_CC:
       if (isButtonPressed(SELECT_BUTTON_PIN)) {
