@@ -1524,35 +1524,7 @@ void demonSHIT() {
   display.drawBitmap(32, 49, image_cross_contour_bits, 11, 16, 1);
   display.display();
 }
-void displayTitleScreen() {
-  display.clearDisplay();
-  u8g2_for_adafruit_gfx.setFont(u8g2_font_adventurer_tr);  // Use a larger font for the title
-  u8g2_for_adafruit_gfx.setCursor(20, 40);                 // Centered vertically
-  u8g2_for_adafruit_gfx.print("CYPHER BOX");
-  // u8g2_for_adafruit_gfx.setCursor(centerX, 25); // Centered vertically
-  // u8g2_for_adafruit_gfx.print("NETWORK PET");
-  display.display();
-}
-void displayInfoScreen() {
-  display.clearDisplay();
-  u8g2_for_adafruit_gfx.setFont(u8g2_font_baby_tf);  // Set back to small font
-  u8g2_for_adafruit_gfx.setCursor(0, 22);
-  u8g2_for_adafruit_gfx.print("Welcome to CYPHER BOX!");
 
-  u8g2_for_adafruit_gfx.setCursor(0, 30);
-  u8g2_for_adafruit_gfx.print("This is a cool cyber tool.");
-
-  u8g2_for_adafruit_gfx.setCursor(0, 38);
-  u8g2_for_adafruit_gfx.print("I perform analysis & attacks.");
-
-  u8g2_for_adafruit_gfx.setCursor(0, 46);
-  u8g2_for_adafruit_gfx.print("Insert a SD card to save!");
-
-  u8g2_for_adafruit_gfx.setCursor(0, 54);
-  u8g2_for_adafruit_gfx.print("Have fun & be safe ~_~;");
-
-  display.display();
-}
 
 // Menu Functions
 void executeSelectedMenuItem() {
