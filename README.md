@@ -80,7 +80,7 @@ This project is a CC1101 device inspired by the works of the Evil Crow RF tool, 
 
 ### Display & Controls
 - OLED I2C: SDA=GPIO21, SCL=GPIO22
-- Buttons: UP=GPIO34, DOWN=GPIO39, SELECT=GPIO32
+- Buttons: UP=GPIO5, DOWN=GPIO4, SELECT=GPIO32
 - LED: Optional, not yet implemented, but choose extra pin
 
 ## Installation
@@ -96,6 +96,7 @@ This project is a CC1101 device inspired by the works of the Evil Crow RF tool, 
    - Adafruit_SSD1306
    - U8g2_for_Adafruit_GFX
    - EEPROM
+   - EZbutton
 
 3. Connect hardware according to pin configuration
 4. Upload the sketch to your ESP32
@@ -133,6 +134,8 @@ This project is a CC1101 device inspired by the works of the Evil Crow RF tool, 
   - https://linktr.ee/littlehakr
 - Based on the Evil Crow RF project
   - https://github.com/joelsernamoreno/EvilCrow-RF
+- me, i fixed the button issue that me and others had/ 
+    
 
 ## License
 
