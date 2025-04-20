@@ -93,6 +93,10 @@
 // EEPROM for storing signals
 #include <EEPROM.h>
 
+// from fork, ez button becuase the og button code was a lil buggy
+#include <ezButton.h>
+
+
 /* Uncomment if adding BT / WiFi Features
 // BT
 #include <BluetoothSerial.h>
@@ -135,12 +139,19 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 U8G2_FOR_ADAFRUIT_GFX u8g2_for_adafruit_gfx;
 
 // LED - set to empty GPIO
-#define LED_PIN 99
+//#define LED_PIN 99
 
 // Buttons
-#define UP_BUTTON_PIN 34
-#define DOWN_BUTTON_PIN 39
+#define UP_BUTTON_PIN 5
+#define DOWN_BUTTON_PIN 4
 #define SELECT_BUTTON_PIN 32
+
+ezButton UP_BUTTON(UP_BUTTON_PIN);
+ezButton DOWN_BUTTON(DOWN_BUTTON_PIN);
+ezButton SELECT_BUTTON(SELECT_BUTTON_PIN);
+
+//button debounce time
+#define Debounce_Time 25
 
 // defining PINs set for ESP32 WROOM module
 // Flipper Zero ESP32 basic config
@@ -1428,11 +1439,13 @@ void updateDisplay(const char *message) {
 
 bool isButtonPressed(uint8_t pin) {
   if (digitalRead(pin) == LOW) {
+    //return true;
     delay(100);  // Debounce delay
     if (digitalRead(pin) == LOW) {
-      digitalWrite(LED_PIN, HIGH);  // Turn on LED
+      //digitalWrite(LED_PIN, HIGH);  // Turn on LED
       return true;
     }
+
   }
   return false;
 }
@@ -1440,7 +1453,7 @@ void handleMenuSelection() {
   static bool buttonPressed = false;
 
   if (!buttonPressed) {
-    if (isButtonPressed(UP_BUTTON_PIN)) {
+    if (UP_BUTTON.isPressed()) {
       // Wrap around if at the top
       selectedMenuItem = static_cast<MenuItem>((selectedMenuItem == 0) ? (NUM_MENU_ITEMS - 1) : (selectedMenuItem - 1));
 
@@ -1454,7 +1467,7 @@ void handleMenuSelection() {
       Serial.println("UP button pressed");
       drawMenu();
       buttonPressed = true;
-    } else if (isButtonPressed(DOWN_BUTTON_PIN)) {
+    } else if (DOWN_BUTTON.isPressed()) {
       // Wrap around if at the bottom
       selectedMenuItem = static_cast<MenuItem>((selectedMenuItem + 1) % NUM_MENU_ITEMS);
 
@@ -1468,7 +1481,7 @@ void handleMenuSelection() {
       Serial.println("DOWN button pressed");
       drawMenu();
       buttonPressed = true;
-    } else if (isButtonPressed(SELECT_BUTTON_PIN)) {
+    } else if (SELECT_BUTTON.isPressed()) {
       Serial.println("SELECT button pressed");
       executeSelectedMenuItem();
       buttonPressed = true;
@@ -1479,13 +1492,16 @@ void handleMenuSelection() {
       drawMenu();
       buttonPressed = true;
     }*/
-  } else {
+
+  } 
+  else {
     // If no button is pressed, reset the buttonPressed flag
-    if (!isButtonPressed(UP_BUTTON_PIN) && !isButtonPressed(DOWN_BUTTON_PIN) && !isButtonPressed(SELECT_BUTTON_PIN)) {
+    //if (!isButtonPressed(UP_BUTTON_PIN) && !isButtonPressed(DOWN_BUTTON_PIN) && !isButtonPressed(SELECT_BUTTON_PIN)) {
       buttonPressed = false;
-      digitalWrite(LED_PIN, LOW);  // Turn off LED
-    }
+      //digitalWrite(LED_PIN, LOW);  // Turn off LED
+    //}
   }
+  //buttonPressed = false;
 }
 
 static const unsigned char PROGMEM image_EviSmile1_bits[] = { 0x30, 0x03, 0x00, 0x60, 0x01, 0x80, 0xe0, 0x01, 0xc0, 0xf3, 0xf3, 0xc0, 0xff, 0xff, 0xc0, 0xff, 0xff, 0xc0, 0x7f, 0xff, 0x80, 0x7f, 0xff, 0x80, 0x7f, 0xff, 0x80, 0xef, 0xfd, 0xc0, 0xe7, 0xf9, 0xc0, 0xe3, 0xf1, 0xc0, 0xe1, 0xe1, 0xc0, 0xf1, 0xe3, 0xc0, 0xff, 0xff, 0xc0, 0x7f, 0xff, 0x80, 0x7b, 0xf7, 0x80, 0x3d, 0x2f, 0x00, 0x1e, 0x1e, 0x00, 0x0f, 0xfc, 0x00, 0x03, 0xf0, 0x00 };
@@ -1507,10 +1523,10 @@ void demonSHIT() {
   u8g2_for_adafruit_gfx.setCursor(20, 40);                 // Centered vertically
   display.drawBitmap(56, 40, image_EviSmile1_bits, 18, 21, 1);
   display.setTextWrap(false);
-  u8g2_for_adafruit_gfx.setCursor(26, 18);
-  u8g2_for_adafruit_gfx.print("C Y P H E R");
-  u8g2_for_adafruit_gfx.setCursor(36, 35);
-  u8g2_for_adafruit_gfx.print("P U L S E");
+  u8g2_for_adafruit_gfx.setCursor(30, 18);
+  u8g2_for_adafruit_gfx.print("C C 1 1 0 1");
+  u8g2_for_adafruit_gfx.setCursor(40, 35);
+  u8g2_for_adafruit_gfx.print("J A M R");
   display.drawBitmap(106, 19, image_Ble_connected_bits, 15, 15, 1);
   display.drawBitmap(2, 50, image_MHz_bits, 25, 11, 1);
   display.drawBitmap(1, 1, image_Error_bits, 18, 18, 1);
@@ -1518,13 +1534,41 @@ void demonSHIT() {
   display.drawBitmap(83, 55, image_off_text_bits, 12, 5, 1);
   display.drawBitmap(109, 2, image_wifi_not_connected_bits, 19, 16, 1);
   display.drawBitmap(4, 31, image_volume_muted_bits, 18, 16, 1);
-  display.drawBitmap(109, 42, image_network_not_connected_bits, 15, 16, 1);
+  display.drawBitmap(109, 45, image_network_not_connected_bits, 15, 16, 1);
   display.drawBitmap(92, 33, image_microphone_muted_bits, 15, 16, 1);
   display.drawBitmap(1, 23, image_mute_text_bits, 19, 5, 1);
   display.drawBitmap(32, 49, image_cross_contour_bits, 11, 16, 1);
   display.display();
 }
+void displayTitleScreen() {
+  display.clearDisplay();
+  u8g2_for_adafruit_gfx.setFont(u8g2_font_adventurer_tr);  // Use a larger font for the title
+  u8g2_for_adafruit_gfx.setCursor(20, 40);                 // Centered vertically
+  u8g2_for_adafruit_gfx.print("CYPHER BOX");
+  // u8g2_for_adafruit_gfx.setCursor(centerX, 25); // Centered vertically
+  // u8g2_for_adafruit_gfx.print("NETWORK PET");
+  display.display();
+}
+void displayInfoScreen() {
+  display.clearDisplay();
+  u8g2_for_adafruit_gfx.setFont(u8g2_font_baby_tf);  // Set back to small font
+  u8g2_for_adafruit_gfx.setCursor(0, 22);
+  u8g2_for_adafruit_gfx.print("Welcome to CYPHER BOX!");
 
+  u8g2_for_adafruit_gfx.setCursor(0, 30);
+  u8g2_for_adafruit_gfx.print("This is a cool cyber tool.");
+
+  u8g2_for_adafruit_gfx.setCursor(0, 38);
+  u8g2_for_adafruit_gfx.print("I perform analysis & attacks.");
+
+  u8g2_for_adafruit_gfx.setCursor(0, 46);
+  u8g2_for_adafruit_gfx.print("Insert a SD card to save!");
+
+  u8g2_for_adafruit_gfx.setCursor(0, 54);
+  u8g2_for_adafruit_gfx.print("Have fun & be safe ~_~;");
+
+  display.display();
+}
 
 // Menu Functions
 void executeSelectedMenuItem() {
@@ -1699,7 +1743,7 @@ void setup() {
   pinMode(UP_BUTTON_PIN, INPUT_PULLUP);
   pinMode(DOWN_BUTTON_PIN, INPUT_PULLUP);
   pinMode(SELECT_BUTTON_PIN, INPUT_PULLUP);
-  pinMode(LED_PIN, OUTPUT);
+  //pinMode(LED_PIN, OUTPUT);
   Serial.println("buttons init'd");
   // Initialize U8g2_for_Adafruit_GFX
   u8g2_for_adafruit_gfx.begin(display);
@@ -1753,9 +1797,21 @@ void setup() {
   EEPROM.begin(EPROMSIZE);
   // setup variables
   bigrecordingbufferpos = 0;
+  Serial.println(currentState);
+  currentState = STATE_MENU;
+  Serial.println(currentState);
+
+  //setting up the debunce for the buttons, adjust to prefrance 
+  SELECT_BUTTON.setDebounceTime(Debounce_Time);
+  UP_BUTTON.setDebounceTime(Debounce_Time);
+  DOWN_BUTTON.setDebounceTime(Debounce_Time);
 }
 
 void loop() {
+  SELECT_BUTTON.loop();
+  UP_BUTTON.loop();
+  DOWN_BUTTON.loop();
+  //handleMenuSelection();
   switch (currentState) {
     case STATE_MENU:
       handleMenuSelection();
@@ -1905,15 +1961,6 @@ void loop() {
     case STATE_STOP_ALL:
       if (isButtonPressed(SELECT_BUTTON_PIN)) {
         Serial.println(F("Exiting Stop All Mode"));
-        currentState = STATE_MENU;
-        drawMenu();
-        nonBlockingDelay(500);  // Debounce
-        return;
-      }
-      break;
-    case STATE_CC_SCAN:
-      if (isButtonPressed(SELECT_BUTTON_PIN)) {
-        Serial.println(F("Exiting Show Buffer Mode"));
         currentState = STATE_MENU;
         drawMenu();
         nonBlockingDelay(500);  // Debounce
